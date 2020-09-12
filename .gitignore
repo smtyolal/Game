@@ -10,7 +10,7 @@ int main()
 
     /*srand(time(NULL));*/
 
-    printf("Başlamak için a veya d tuşlarından birine basınız\n");
+    printf("Başlamak için A/a veya D/d tuşlarından birine basınız\n");
     printf("-------------------------------------------------\n\n");
 
     char section[] = {"|               |"};
