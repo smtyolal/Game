@@ -1,52 +1,77 @@
-# Prerequisites
-*.d
+#include <stdio.h>
+#include <time.h>
+#define RAND_MIN 1
+#define RAND_MAX 10
+#define SECTION_MIN 1
+#define SECTION_MAX 15
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+int main()
+{
 
-# Linker output
-*.ilk
-*.map
-*.exp
+    /*srand(time(NULL));*/
 
-# Precompiled Headers
-*.gch
-*.pch
+    printf("Başlamak için a veya d tuşlarından birine basınız\n");
+    printf("-------------------------------------------------\n\n");
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+    char section[] = {"|               |"};
+    int position = 1; /* rand() % (RAND_MAX - RAND_MIN + 1) + RAND_MIN ; */ //Random fonksiyonu rastgele yerlerde olmak içindir.
+    char direction;
+    int counter = position;
+    
+    
+    
+    for (;;){
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+        direction = getchar();
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+        if (direction == 'a' || direction == 'A')
+        {
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
+            --counter;
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+            if (counter < SECTION_MIN)
+            {
+
+                section[position] = ' ';
+                section[position = SECTION_MAX] = '<';
+                system("clear");
+                printf("%s\n", section);
+                counter = SECTION_MAX;
+            }
+
+            else
+            {
+                section[position] = ' ';
+                section[--position] = '<';
+                system("clear");
+                printf("%s\n", section);
+            }
+        }
+
+        else if (direction == 'd' || direction == 'D')
+        {
+            ++counter;
+
+            if (counter > SECTION_MAX)
+            {
+
+                section[position] = ' ';
+                section[position = SECTION_MIN] = '>';
+                system("clear");
+                printf("%s\n", section);
+                counter = SECTION_MIN;
+            }
+
+            else
+            {
+                section[position] = ' ';
+                section[++position] = '>';
+                system("clear");
+                printf("%s\n", section);
+            }
+        }
+
+    }
+
+    return 0;
+}
